@@ -1,0 +1,14 @@
+{
+  "name": "it_ticketer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server",
+  "scripts": {
+    "start": "nodemon server/server.js"
+  },
+  "author": "Patrick Salvatore",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}

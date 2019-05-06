@@ -1,0 +1,10 @@
+.formWrapper {
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+
+.signInForm {
+    margin-top: 40px;
+    width: 40%;
+}

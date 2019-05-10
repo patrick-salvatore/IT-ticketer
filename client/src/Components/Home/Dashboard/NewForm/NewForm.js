@@ -3,7 +3,8 @@ import Navbar from '../../Navbar/Navbar';
 
 import Input from './Input'
 import TextArea from './TextArea' 
-import Checkbox from './Checkbox'
+import Checkbox from './Checklist.js/Checkbox'
+import CheckboxList from './Checklist.js/CheckboxList'
 
 // new form container the handled the state interpulation and makes API calls
 
@@ -20,14 +21,40 @@ export default class NewForm extends Component {
         owner_tel: '', 
         owner_add: '',  
         incident_desc: '',
-        incident_type: '',
+        incident_type: [],
 
       }
     }
   }
 
+  // onSelect = (selected, checked) =>  {
+  //   //change props only for the clicked checkbox and update state
+  //   if(checked) {
+  //       //if the checkbox is check append id to the selected state array
+  //       this.setState((prevState) => ({
+  //            selectedValues: prevState.formFields.incident_type.concat(selected)
+  //       }))
+  //   } else {
+  //       //remove the value from state is its unchecked
+  //       let selectedValues = [...this.state.formFields.incident_type];
+  //       const index = selectedValues.indexOf(selected);
+  //       if(index > -1) {
+  //           selectedValues = [...selectedValues.slice(0, index), ...selectedValues.slice(index + 1)];
+  //       }
+  //       this.setState({selectedValues});
+  //   }
+  //  }
+  onSelect = (e) => {
+    let value = e.target.checked
+    let name = e.target.value
+    let formFields = {...this.state.formFields, incident_type: {[name]: value}}
+    this.setState(() => ( 
+      {formFields}
+    ), () => console.log(this.state))
+  }
+
   changeHandler = (e) => {
-    let value = e.target.value
+    let value = e.target.value 
     let name = e.target.name
     let formFields = {...this.state.formFields, [name]: value}
     this.setState(() => ( 
@@ -103,34 +130,9 @@ export default class NewForm extends Component {
               </div>
               <label className = 'form-group-label font-weight-bold'>Incident type: </label>
               <div className='row'>
-                <Checkbox 
-                  title = 'IT Security Breach'
-                  type = 'radio'
-                  name = 'incident_type'
-                  value = 'securityBreach_IT'
-                  onClick = {this.changeHandler}
-                />
-                <Checkbox 
-                  title = 'Breaches of Data'
-                  type = 'radio'
-                  name = 'incident_type'
-                  value = 'dataBreach'
-                  onClick = {this.changeHandler}
-                />
-                <Checkbox 
-                  title = 'Physical Seurity Breach'
-                  type = 'radio'
-                  name = 'incident_type'
-                  value = 'securityBreach_P'
-                  onClick = {this.changeHandler}
-                />
-                 <Checkbox 
-                  title = 'Equipment Compromised'
-                  type = 'radio'
-                  name = 'incident_type'
-                  value = 'equipment'
-                  onClick = {this.changeHandler}
-                />
+        
+                <CheckboxList onClick = {this.onSelect}/>
+              
                 <div className = 'row'></div>
               </div>
           </form>

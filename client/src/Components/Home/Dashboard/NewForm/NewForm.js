@@ -3,7 +3,6 @@ import Navbar from '../../Navbar/Navbar';
 
 import Input from './Input'
 import TextArea from './TextArea' 
-import Checkbox from './Checklist.js/Checkbox'
 import CheckboxList from './Checklist.js/CheckboxList'
 
 // new form container the handled the state interpulation and makes API calls
@@ -22,39 +21,34 @@ export default class NewForm extends Component {
         owner_add: '',  
         incident_desc: '',
         incident_type: [],
+        incident_severity: '', 
 
       }
     }
   }
 
-  // onSelect = (selected, checked) =>  {
-  //   //change props only for the clicked checkbox and update state
-  //   if(checked) {
-  //       //if the checkbox is check append id to the selected state array
-  //       this.setState((prevState) => ({
-  //            selectedValues: prevState.formFields.incident_type.concat(selected)
-  //       }))
-  //   } else {
-  //       //remove the value from state is its unchecked
-  //       let selectedValues = [...this.state.formFields.incident_type];
-  //       const index = selectedValues.indexOf(selected);
-  //       if(index > -1) {
-  //           selectedValues = [...selectedValues.slice(0, index), ...selectedValues.slice(index + 1)];
-  //       }
-  //       this.setState({selectedValues});
-  //   }
-  //  }
   onSelect = (e) => {
     let value = e.target.checked
     let name = e.target.value
-    let formFields = {...this.state.formFields, incident_type: {[name]: value}}
-    this.setState(() => ( 
-      {formFields}
-    ), () => console.log(this.state))
+    let formFields = {...this.state.formFields, incident_type: [name]}
+
+    if (value) {
+      this.setState(() => ( 
+        {formFields}
+      ), () => console.log(this.state))
+    }
+    else {
+      let selectedValues = [this.state.formFields.incident_type]
+      const index = selectedValues.indexOf(name);
+        if(index > -1) {
+            selectedValues = [...selectedValues.slice(0, index), ...selectedValues.slice(index + 1)];
+        }
+      console.log(selectedValues)
+    }
   }
 
   changeHandler = (e) => {
-    let value = e.target.value 
+    let value = e.target === 'radio' ? e.target.radio : e.target.value
     let name = e.target.name
     let formFields = {...this.state.formFields, [name]: value}
     this.setState(() => ( 
@@ -130,10 +124,31 @@ export default class NewForm extends Component {
               </div>
               <label className = 'form-group-label font-weight-bold'>Incident type: </label>
               <div className='row'>
-        
                 <CheckboxList onClick = {this.onSelect}/>
-              
-                <div className = 'row'></div>
+              </div>
+              <label className = 'form-group-label font-weight-bold'> Incident Severity </label>
+              <div className = 'row'> 
+                <Input
+                  title = 'Low'
+                  type = 'radio'
+                  name = 'incident_severity'
+                  value = 'low'
+                  onChange =  {this.changeHandler}
+                  />
+                  <Input
+                  title = 'Mid'
+                  type = 'radio'
+                  name = 'incident_severity'
+                  value = 'medium'
+                  onChange =  {this.changeHandler}
+                  />
+                  <Input
+                  title = 'High'
+                  type = 'radio'
+                  name = 'incident_severity'
+                  value = 'high'
+                  onChange =  {this.changeHandler}
+                  />
               </div>
           </form>
         </div>

@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
-import Navbar from '../../Navbar/Navbar';
+import Navbar from '../../Home/Navbar/Navbar'
 
-import Input from './Input'
-import TextArea from './TextArea' 
-import CheckboxList from './Checklist.js/CheckboxList'
+// react-router
+import {Link} from 'react-router-dom'
+
+// components
+import Input from '../Items/Input'
+import TextArea from '../Items/TextArea' 
+import CheckboxList from '../Items/Checklist.js/CheckboxList'
 
 // new form container the handled the state interpulation and makes API calls
-
 export default class NewForm extends Component {
   constructor() {
     super() 
@@ -22,35 +25,38 @@ export default class NewForm extends Component {
         incident_desc: '',
         incident_type: [],
         incident_severity: '', 
-
+        
       }
     }
   }
 
   onSelect = (e) => {
-    let value = e.target.checked
-    let name = e.target.value
-    let formFields = {...this.state.formFields, incident_type: [name]}
+    const value = e.target.checked
+    const name = e.target.value
 
     if (value) {
+      let selected = [...this.state.formFields.incident_type, name]
+      let formFields = {...this.state.formFields, incident_type: [...selected]}
       this.setState(() => ( 
         {formFields}
       ), () => console.log(this.state))
     }
     else {
-      let selectedValues = [this.state.formFields.incident_type]
-      const index = selectedValues.indexOf(name);
-        if(index > -1) {
-            selectedValues = [...selectedValues.slice(0, index), ...selectedValues.slice(index + 1)];
-        }
-      console.log(selectedValues)
-    }
+      let selectedValues = [...this.state.formFields.incident_type]
+      selectedValues = selectedValues.filter(el => (
+          el !== name
+      ))
+      let formFields = {...this.state.formFields, incident_type: [...selectedValues]}
+      this.setState(() => ( 
+          {formFields}
+        ), () => console.log(this.state))
+      }
   }
 
   changeHandler = (e) => {
-    let value = e.target === 'radio' ? e.target.radio : e.target.value
-    let name = e.target.name
-    let formFields = {...this.state.formFields, [name]: value}
+    const value = e.target === 'radio' ? e.target.radio : e.target.value
+    const name = e.target.name
+    const formFields = {...this.state.formFields, [name]: value}
     this.setState(() => ( 
       {formFields}
     ), () => console.log(this.state))
@@ -151,6 +157,8 @@ export default class NewForm extends Component {
                   />
               </div>
           </form>
+          <button className = 'btn btn-success'> Save </button>
+          <Link to ='/questionnaire'><button className = 'btn btn-primary'> Next </button></Link>
         </div>
       </div>
     )

@@ -7,7 +7,6 @@ const CheckboxList = props => {
     <div>
         {checkBoxes.map((el, i) => {
            return (
-            // <label forhtml = {el.name} className = 'form-check form-check-inline font-weight-bold'> {props.title} </label>
             <Checkbox 
                 className = 'form-check-input'
                 key = {i}

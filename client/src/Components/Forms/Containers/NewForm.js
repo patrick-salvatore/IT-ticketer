@@ -25,7 +25,6 @@ export default class NewForm extends Component {
         incident_desc: '',
         incident_type: [],
         incident_severity: '', 
-        
       }
     }
   }

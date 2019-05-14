@@ -6,20 +6,14 @@ import {Link} from 'react-router-dom'
 
 // components
 import Input from '../Items/Input'
-import TextArea from '../Items/TextArea' 
-import CheckboxList from '../Items/Checklist.js/CheckboxList'
+
 
 export default class Questionaire extends Component {
   constructor() {
     super()
     this.state = {
       questions: {
-        q1: '', 
-        q2: '',
-        q3: '', 
-        q4: '', 
-        q5: '', 
-        q6: '',
+        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: ''
       }
     }
   }
@@ -39,7 +33,7 @@ export default class Questionaire extends Component {
       <div>
         <Navbar/>
         <div className = 'container'> 
-        <h1>Risk Factors Questionaire</h1>
+        <h1>Risk Factors Questionnaire</h1>
         <p>Please answer the following questions to provide more information about the issue</p>
           <div className = 'row'>
             <form>
@@ -70,7 +64,7 @@ export default class Questionaire extends Component {
               <Input 
                 title = 'Is the information Client Based?'
                 type = 'text'
-                name = 'q3'
+                name = 'q4'
                 placeholder = 'Answer'
                 value = {this.state.questions.q4}
                 onChange = {this.changeHandler}
@@ -78,36 +72,71 @@ export default class Questionaire extends Component {
               <Input 
                 title = 'If the incident involves the loss of a laptop or portable device, did the device contain Client Data. Was the information, backed up onto Druva systems?'
                 type = 'text'
-                name = 'q3'
+                name = 'q5'
                 placeholder = 'Answer'
-                value = {this.state.questions.q4}
+                value = {this.state.questions.q5}
                 onChange = {this.changeHandler}
               />
               <Input
                 title = "Does it include records of operational, legal or evidential value to the HealthSTAR or its Clients?"
                 type = 'text'
+                name = 'q6'
                 placeholder = 'Answer'
-                value = {this.state.questions.q5}
+                value = {this.state.questions.q6}
                 onChange = {this.changeHandler}
               />
               <label className = 'form-group-label font-weight-bold'> Is it business-critical? Do users rely on access to this information asset or can they use reliable electronic copies or alternative manual processes e.g. paper files if the information asset is unavailable? </label>
               <div className = 'row'> 
-                  <Input
-                  title = 'Yes'
-                  type = 'radio'
-                  name = 'q6'
-                  value = 'yes'
-                  onChange =  {this.changeHandler}
-                  />
-                  <Input
-                  title = 'No'
-                  type = 'radio'
-                  name = 'q6'
-                  value = 'no'
-                  onChange =  {this.changeHandler}
-                  />
+                <Input
+                title = 'Yes'
+                type = 'radio'
+                name = 'q7'
+                value = 'yes'
+                onChange =  {this.changeHandler}
+                />
+                <Input
+                title = 'No'
+                type = 'radio'
+                name = 'q7'
+                value = 'no'
+                onChange =  {this.changeHandler}
+                />
               </div>
+              <Input
+                title = 'How urgently would access need to be restored to an information asset to resume business or, to return to the required standard of service?'
+                type = 'text'
+                name = 'q8'
+                placeholder = 'Answer'
+                value = {this.state.questions.q8}
+                onChange = {this.changeHandler}
+              />
+              <Input
+                title = 'Will the loss or compromise of the information have adverse operational, financial legal, liability or reputational consequences for HealthSTAR or its Clients?'
+                type = 'text'
+                name = 'q9'
+                placeholder = 'Answer'
+                value = {this.state.questions.q9}
+                onChange = {this.changeHandler}
+              /> 
+              <Input
+                title = 'Is the information bound by any contractual security arrangements e.g. to Clients?'
+                type = 'text'
+                name = 'q10'
+                placeholder = 'Answer'
+                value = {this.state.questions.q10}
+                onChange = {this.changeHandler}
+              />
+              <Input
+                title = 'Is any of the information confidential?'
+                type = 'text'
+                name = 'q11'
+                placeholder = 'Answer'
+                value = {this.state.questions.q11}
+                onChange = {this.changeHandler}
+              />  
             </form>
+            <button className = 'btn btn-success' type = 'submit'> Save </button>
+            <Link to ='/summary'><button className = 'btn btn-primary'> Next </button></Link>
           </div>
         </div>
       </div>

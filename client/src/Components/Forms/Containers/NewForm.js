@@ -156,7 +156,7 @@ export default class NewForm extends Component {
                   />
               </div>
           </form>
-          <button className = 'btn btn-success'> Save </button>
+          <button className = 'btn btn-success' type = 'submit' > Save </button>
           <Link to ='/questionnaire'><button className = 'btn btn-primary'> Next </button></Link>
         </div>
       </div>

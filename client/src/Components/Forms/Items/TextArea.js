@@ -12,7 +12,7 @@ const TextArea = props => {
         placeholder = {props.placeholder}
         rows = {props.rows}
         cols = {props.cols}
-        maxLength = '250'
+        maxLength = '300'
         spellCheck = 'true'
         {...props}
       />

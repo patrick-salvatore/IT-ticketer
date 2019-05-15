@@ -1,11 +1,13 @@
 import React, { Component } from 'react'
 import Navbar from '../../Home/Navbar/Navbar'
+import HIGH_RISK_CONTENT from '../Items/content'
 
 // react-router
 import {Link} from 'react-router-dom'
 
 // components
 import Input from '../Items/Input'
+import TextArea from '../Items/TextArea'
 
 
 export default class Questionaire extends Component {
@@ -13,21 +15,23 @@ export default class Questionaire extends Component {
     super()
     this.state = {
       questions: {
-        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: ''
-      }
+        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', action: ''
+      }, 
     }
   }
 
   changeHandler = (e) => {
     const value = e.target === 'radio' ? e.target.radio : e.target.value
     const name = e.target.name
-    const questions = { [name]: value }
+    const questions = { ...this.state.questions, [name]: value }
+    // console.log(name, value, questions)
     this.setState(() => ( 
-      {questions}
+      { questions }
     ), () => console.log(this.state))
-  }
 
-
+  } 
+    
+  
   render() {
     return (
       <div>
@@ -134,7 +138,21 @@ export default class Questionaire extends Component {
                 value = {this.state.questions.q11}
                 onChange = {this.changeHandler}
               />  
+
+              <h4>HIGH RISK</h4>
+              <textarea rows = '8' cols = "100" readOnly defaultValue = {HIGH_RISK_CONTENT}/>
+              <h6> Below please provide details and required action if incident is deemed "High Risk"</h6>
+              <TextArea
+                type = 'text'
+                name = 'action'
+                rows = '5'
+                cols = '20'
+                placeholder = 'Your actions here'
+                value = {this.state.questions.action}
+                onChange = {this.changeHandler}
+              />
             </form>
+            
             <button className = 'btn btn-success' type = 'submit'> Save </button>
             <Link to ='/summary'><button className = 'btn btn-primary'> Next </button></Link>
           </div>

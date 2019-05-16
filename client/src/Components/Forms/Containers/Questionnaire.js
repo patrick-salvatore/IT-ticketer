@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
 import Navbar from '../../Home/Navbar/Navbar'
 import HIGH_RISK_CONTENT from '../Items/content'
+import {saveFormToState} from '../../../Actions/ReportActions'
 
-// react-router
+// react-router & redux 
 import {Link} from 'react-router-dom'
+import { connect } from 'react-redux'
 
 // components
 import Input from '../Items/Input'
 import TextArea from '../Items/TextArea'
 
 
-export default class Questionaire extends Component {
+class Questionaire extends Component {
   constructor() {
     super()
     this.state = {
@@ -27,9 +29,12 @@ export default class Questionaire extends Component {
     // console.log(name, value, questions)
     this.setState(() => ( 
       { questions }
-    ), () => console.log(this.state))
-
+    ))
   } 
+
+  saveHandler = (e) => {
+    this.props.onSave(this.state.questions)
+  }
     
   
   render() {
@@ -153,8 +158,8 @@ export default class Questionaire extends Component {
               />
             </form>
             
-            <button className = 'btn btn-success' type = 'submit'> Save </button>
-            <Link to ='/summary'><button className = 'btn btn-primary'> Next </button></Link>
+            {/* <button className = 'btn btn-success' type = 'submit'> Save </button> */}
+            <Link to ='/summary'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
           </div>
         </div>
       </div>
@@ -162,3 +167,12 @@ export default class Questionaire extends Component {
   }
 }
 
+const mapDispatchToProps = dispatch => {
+  return {
+    onSave: form => {
+      dispatch(saveFormToState(form))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(Questionaire)

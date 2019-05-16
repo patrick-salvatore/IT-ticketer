@@ -1,8 +1,10 @@
 import React, { Component } from 'react'
 import Navbar from '../../Home/Navbar/Navbar'
 
-// react-router
+// Router & Redux
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {saveFormToState} from '../../../Actions/ReportActions'
 
 // components
 import Input from '../Items/Input'
@@ -10,7 +12,7 @@ import TextArea from '../Items/TextArea'
 import CheckboxList from '../Items/Checklist.js/CheckboxList'
 
 // new form container the handled the state interpulation and makes API calls
-export default class NewForm extends Component {
+class NewForm extends Component {
   constructor() {
     super() 
     this.state = {
@@ -38,7 +40,7 @@ export default class NewForm extends Component {
       let formFields = {...this.state.formFields, incident_type: [...selected]}
       this.setState(() => ( 
         {formFields}
-      ), () => console.log(this.state))
+      ))
     }
     else {
       let selectedValues = [...this.state.formFields.incident_type]
@@ -48,7 +50,7 @@ export default class NewForm extends Component {
       let formFields = {...this.state.formFields, incident_type: [...selectedValues]}
       this.setState(() => ( 
           {formFields}
-        ), () => console.log(this.state))
+        ))
       }
   }
 
@@ -58,7 +60,11 @@ export default class NewForm extends Component {
     const formFields = {...this.state.formFields, [name]: value}
     this.setState(() => ( 
       {formFields}
-    ), () => console.log(this.state))
+    ))
+  }
+
+  saveHandler = (e) => {
+    this.props.onSave(this.state.formFields)
   }
 
   render() {
@@ -100,21 +106,21 @@ export default class NewForm extends Component {
                 placeholder = 'Email'
                 value = {this.state.formFields.owner_email}
                 onChange =  {this.changeHandler}
-                />
-                <Input
+              />
+              <Input
                 type = 'tel'
                 name = 'owner_tel'
                 placeholder = '(123)435-6789'
                 value = {this.state.formFields.owner_tel}
                 onChange =  {this.changeHandler}
-                />
-                <Input
+              />
+              <Input
                 type = 'text'
                 name = 'owner_add'
                 placeholder = 'Address'
                 value = {this.state.formFields.owner_add}
                 onChange =  {this.changeHandler}
-                />
+              />
               </div>
               <div className='row'>
                 <TextArea
@@ -139,27 +145,37 @@ export default class NewForm extends Component {
                   name = 'incident_severity'
                   value = 'low'
                   onChange =  {this.changeHandler}
-                  />
-                  <Input
+                />
+                <Input
                   title = 'Mid'
                   type = 'radio'
                   name = 'incident_severity'
                   value = 'medium'
                   onChange =  {this.changeHandler}
-                  />
-                  <Input
+                />
+                <Input
                   title = 'High'
                   type = 'radio'
                   name = 'incident_severity'
                   value = 'high'
                   onChange =  {this.changeHandler}
-                  />
+                />
               </div>
           </form>
-          <button className = 'btn btn-success' type = 'submit' > Save </button>
-          <Link to ='/questionnaire'><button className = 'btn btn-primary'> Next </button></Link>
+          {/* <button className = 'btn btn-success' type = 'submit' > Save </button> */} 
+          <Link to ='/questionnaire'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
         </div>
       </div>
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    onSave: form => {
+      dispatch(saveFormToState(form))
+    }
+  }
+}
+
+export default connect(null, mapDispatchToProps)(NewForm)

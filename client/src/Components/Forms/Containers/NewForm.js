@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import Navbar from '../../Home/Navbar/Navbar'
 
 // Router & Redux
 import {Link} from 'react-router-dom'
@@ -20,7 +19,7 @@ class NewForm extends Component {
       formFields: {
         date: '',
         incident_title: '', 
-        incident_owner: '',
+        owner_name: '',
         owner_email: '',
         owner_tel: '', 
         owner_add: '',  
@@ -67,11 +66,12 @@ class NewForm extends Component {
     this.props.onSave(this.state.formFields)
   }
 
+  componentDidUpdate() {
+  }
+
   render() {
     return (
-      <div>
-        <Navbar/>
-        <div className = 'container'>
+      <div className = 'container'>
         <h1>Incidence Response Check List</h1>
           <form className = 'container-fluid'>
             <div className='row'>
@@ -95,9 +95,9 @@ class NewForm extends Component {
             <div className = 'row'>
               <Input
                 type = 'text'
-                name = 'incident_owner'
+                name = 'owner_name'
                 placeholder = 'Name'
-                value = {this.state.formFields.incident_owner}
+                value = {this.state.formFields.owner_name}
                 onChange =  {this.changeHandler}
               /> 
               <Input
@@ -162,9 +162,7 @@ class NewForm extends Component {
                 />
               </div>
           </form>
-          {/* <button className = 'btn btn-success' type = 'submit' > Save </button> */} 
           <Link to ='/questionnaire'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
-        </div>
       </div>
     )
   }

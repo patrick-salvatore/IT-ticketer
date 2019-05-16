@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import Navbar from '../../Home/Navbar/Navbar'
 import HIGH_RISK_CONTENT from '../Items/content'
 import {saveFormToState} from '../../../Actions/ReportActions'
 
 // react-router & redux 
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import { connect } from 'react-redux'
 
 // components
@@ -17,7 +16,7 @@ class Questionaire extends Component {
     super()
     this.state = {
       questions: {
-        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', action: ''
+        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', q11: '', action: ''
       }, 
     }
   }
@@ -39,9 +38,7 @@ class Questionaire extends Component {
   
   render() {
     return (
-      <div>
-        <Navbar/>
-        <div className = 'container'> 
+      <div className = 'container'> 
         <h1>Risk Factors Questionnaire</h1>
         <p>Please answer the following questions to provide more information about the issue</p>
           <div className = 'row'>
@@ -94,7 +91,7 @@ class Questionaire extends Component {
                 value = {this.state.questions.q6}
                 onChange = {this.changeHandler}
               />
-              <label className = 'form-group-label font-weight-bold'> Is it business-critical? Do users rely on access to this information asset or can they use reliable electronic copies or alternative manual processes e.g. paper files if the information asset is unavailable? </label>
+              <label className = 'form-group-label font-weight-bold'>Is it business-critical? Do users rely on access to this information asset or can they use reliable electronic copies or alternative manual processes e.g. paper files if the information asset is unavailable?</label>
               <div className = 'row'> 
                 <Input
                 title = 'Yes'
@@ -158,11 +155,9 @@ class Questionaire extends Component {
               />
             </form>
             
-            {/* <button className = 'btn btn-success' type = 'submit'> Save </button> */}
             <Link to ='/summary'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
           </div>
         </div>
-      </div>
     )
   }
 }

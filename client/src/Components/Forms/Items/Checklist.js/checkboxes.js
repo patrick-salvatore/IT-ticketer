@@ -1,27 +1,27 @@
 const checkBoxes = [
     {
       name: 'incident_type',
-      key: 'securityBreach_IT',
+      key: ' IT_Security Breach',
       title: 'IT Security Breach'
     },
     {
       name: 'incident_type',
-      key: 'dataBreach',
+      key: ' Data Breach',
       title: 'Data Breach'
     },
     {
       name: 'incident_type',
-      key: 'securityBreach_Phys',
-      title: 'Physical Seurity Breach'
+      key: ' Security Breach_Phys',
+      title: 'Physical Security Breach'
     },
     {
       name: 'incident_type',
-      key: 'equipment',
+      key: ' Equipment',
       title: 'Equipment Compromised'
     },
     {
       name: 'incident_type',
-      key: 'user_err',
+      key: ' User_err',
       title: 'User Error'
     }
 ];

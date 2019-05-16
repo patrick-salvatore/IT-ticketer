@@ -1,6 +1,7 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 
+import Navbar from "./Home/Navbar/Navbar"
 import Home from './Home/Home';
 import SignIn from './Auth/SignIn';
 import NewForm from './Forms/Containers/NewForm'
@@ -11,6 +12,7 @@ import Summary from './Forms/Containers/Summary'
 function App() {
   return (
     <div className="App">
+      <Navbar/>
       <Switch>
         <Route exact path='/' component = {Home}></Route>
         <Route path='/signin' component = {SignIn}></Route>

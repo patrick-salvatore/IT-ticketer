@@ -14,10 +14,6 @@ const report = sequelize.define('report', {
         allowNull: false
     }, 
     title: {type: Sequelize.STRING}, 
-    date: {
-        type: Sequelize.DATEONLY, 
-        allowNull: false, 
-    }, 
     description: { 
         type: Sequelize.TEXT, 
         allowNull: false,

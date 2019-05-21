@@ -19,6 +19,7 @@ class NewForm extends Component {
       formFields: {
         date: '',
         incident_title: '', 
+        author: '',
         owner_name: '',
         owner_email: '',
         owner_tel: '', 
@@ -66,9 +67,6 @@ class NewForm extends Component {
     this.props.onSave(this.state.formFields)
   }
 
-  componentDidUpdate() {
-  }
-
   render() {
     return (
       <div className = 'container'>
@@ -88,6 +86,14 @@ class NewForm extends Component {
                 name = 'incident_title'
                 placeholder = 'Title'
                 value = {this.state.formFields.incident_title }
+                onChange = {this.changeHandler} 
+              />
+              <Input
+                title = 'Creator'
+                type = 'text'
+                name = 'author'
+                placeholder = 'Name'
+                value = {this.state.formFields.author }
                 onChange = {this.changeHandler} 
               />
             </div>

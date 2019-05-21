@@ -6,13 +6,11 @@ const express = require('express'),
     app = express();
 
 app.use(cors())
-app.use(bodyParser.urlencoded({
-    extended: true
-}));
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
 
-app.use('/API/report', reportsRoutes)
+app.use('/API/reports', reportsRoutes)
 
 sequelize.sync()
     .then(_ => {

@@ -2,21 +2,26 @@ const express = require('express'),
     router = express.Router(),
     Report = require('../models/reportModel');
 
+
+// ROUTE THAT FETCHES ALL REPORTS
 router.get('/', (req, res) => {
     Report.findAll()
         .then(reports => {
-            res.status(200).json(reports)
+            res.status(200).json({reports})
         })
-        .catch(err => console.log(err))
+        .catch(err => {
+            res.json({"message": "Reports not found"})
+        })
 })
 
+// ROUTE THAT CREATS A NEW REPORT
 router.post('/', (req, res) => {
-    const data = req.body
+    const data = req.body.Report
     Report.create({
-        title: data.title,
+        title: data.incident_title,
         author: data.author,
-        description: data.description,
-        incident_type: data.incident_type,
+        description: data.incident_desc,
+        incident_type: data.incident_type.toString(),
         incident_severity: data.incident_severity,
         owner_name: data.owner_name,
         owner_tel: data.owner_tel,
@@ -34,12 +39,38 @@ router.post('/', (req, res) => {
         question_11: data.q11,
         action: data.action
     })
-    .then(_ => {
-         res.status(201).json('created new report')
+    .then(report => {
+        res.status(201).json({"message": "new report created", "data": report})
     })
-    .catch(err => console.log(err))
+    .catch(err => {
+        console.log(err)
+        return res.status(400).json({"message": "Error while creating post"})
+    })
 });
 
+// ROUTE THAT FETCHES REPORT BY ID
+router.get('/:id', (req,res) => {
+    let id = req.params
+    Report.findByPk(id)
+        .then(report => {
+            res.status(200).json({report})
+        })
+        .catch(err => res.status(404).json({"message": "report does not exist"}))
+})
+
+// ROUTE THAT DELETES A REPORT BY ID
+router.delete('/:id', (req, res) => {
+    let id = req.params
+    Report.destroy({
+        where: {id}
+    })
+    .then(_ => {
+        res.status(200).json({"message": "Report successfully deleted"})
+    })
+    .catch(err => {
+        res.status(404).json({"message": "Report not found"})
+    })
+})
 
 
 module.exports = router

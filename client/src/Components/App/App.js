@@ -1,13 +1,14 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 
-import Navbar from "./Home/Navbar/Navbar"
-import Home from './Home/Home';
-import SignIn from './Auth/SignIn';
-import NewForm from './Forms/Containers/NewForm'
-import Questionnaire from './Forms/Containers/Questionnaire'
-import Summary from './Forms/Containers/Summary'
+import Navbar from "../Home/Navbar/Navbar"
+import Home from '../Home/Home';
+import SignIn from '../Auth/SignIn';
+import NewForm from '../Forms/Containers/NewForm'
+import Questionnaire from '../Forms/Containers/Questionnaire'
+import Summary from '../Forms/Containers/Summary'
 
+import './App.css'
 
 function App() {
   return (

@@ -71,77 +71,83 @@ class NewForm extends Component {
     return (
       <div className = 'container'>
         <h1>Incidence Response Check List</h1>
-          <form className = 'container-fluid'>
-            <div className='row'>
-              <Input 
-                title = 'Date'
-                type = 'date' 
-                name= 'date' 
-                onChange = {this.changeHandler} 
-                value = {this.state.formFields.date}
-              />
-              <Input
-                title = 'Incident Title'
-                type = 'text'
-                name = 'incident_title'
-                placeholder = 'Title'
-                value = {this.state.formFields.incident_title }
-                onChange = {this.changeHandler} 
-              />
-              <Input
-                title = 'Creator'
-                type = 'text'
-                name = 'author'
-                placeholder = 'Name'
-                value = {this.state.formFields.author }
-                onChange = {this.changeHandler} 
-              />
-            </div>
-            <label className = 'form-group-label font-weight-bold'>Who reported this incident?</label>
-            <div className = 'row'>
-              <Input
-                type = 'text'
-                name = 'owner_name'
-                placeholder = 'Name'
-                value = {this.state.formFields.owner_name}
-                onChange =  {this.changeHandler}
-              /> 
-              <Input
-                type = 'email'
-                name = 'owner_email'
-                placeholder = 'Email'
-                value = {this.state.formFields.owner_email}
-                onChange =  {this.changeHandler}
-              />
-              <Input
-                type = 'tel'
-                name = 'owner_tel'
-                placeholder = '(123)435-6789'
-                value = {this.state.formFields.owner_tel}
-                onChange =  {this.changeHandler}
-              />
-              <Input
-                type = 'text'
-                name = 'owner_add'
-                placeholder = 'Address'
-                value = {this.state.formFields.owner_add}
-                onChange =  {this.changeHandler}
-              />
-              </div>
+          <form className = 'formContainer'>
+            <div className='col-12'>
               <div className='row'>
-                <TextArea
-                  title = 'Incident description'
+                <Input 
+                  title = 'Date'
+                  type = 'date' 
+                  name= 'date' 
+                  onChange = {this.changeHandler} 
+                  value = {this.state.formFields.date}
+                />
+                <Input
+                  title = 'Incident Title'
                   type = 'text'
-                  name = 'incident_desc'
-                  rows = '5'
-                  cols = '60'
-                  value = {this.state.formFields.incident_desc}
-                  onChange = {this.changeHandler}
+                  name = 'incident_title'
+                  placeholder = 'Title'
+                  value = {this.state.formFields.incident_title }
+                  onChange = {this.changeHandler} 
+                />
+                <Input
+                  title = 'Associates'
+                  type = 'text'
+                  name = 'author'
+                  placeholder = 'Name'
+                  value = {this.state.formFields.author }
+                  onChange = {this.changeHandler} 
                 />
               </div>
-              <label className = 'form-group-label font-weight-bold'>Incident type: </label>
+            </div>
+            <div className = 'row'>
+              <div className = 'col-4'>
+                <label className = 'form-group-label font-weight-bold'>Who reported this incident?</label>
+                <Input
+                  type = 'text'
+                  name = 'owner_name'
+                  placeholder = 'Name'
+                  value = {this.state.formFields.owner_name}
+                  onChange =  {this.changeHandler}
+                /> 
+                <Input
+                  type = 'email'
+                  name = 'owner_email'
+                  placeholder = 'Email'
+                  value = {this.state.formFields.owner_email}
+                  onChange =  {this.changeHandler}
+                />
+                <Input
+                  type = 'tel'
+                  name = 'owner_tel'
+                  placeholder = '(123)435-6789'
+                  value = {this.state.formFields.owner_tel}
+                  onChange =  {this.changeHandler}
+                />
+                <Input
+                  type = 'text'
+                  name = 'owner_add'
+                  placeholder = 'Address'
+                  value = {this.state.formFields.owner_add}
+                  onChange =  {this.changeHandler}
+                />
+              </div>
+            </div>
+            <div className='row'>
+              <TextArea
+                title = 'Incident description'
+                type = 'text'
+                name = 'incident_desc'
+                rows = '5'
+                cols = '60'
+                value = {this.state.formFields.incident_desc}
+                onChange = {this.changeHandler}
+              />
+            </div>
               <div className='row'>
-                <CheckboxList onClick = {this.onSelect}/>
+                <div className ='col'>
+                  <label className = 'form-group-label font-weight-bold'>Incident type: </label>
+                  <CheckboxList onClick = {this.onSelect}/>
+                </div>
               </div>
               <label className = 'form-group-label font-weight-bold'> Incident Severity </label>
               <div className = 'row'> 
@@ -167,8 +173,8 @@ class NewForm extends Component {
                   onChange =  {this.changeHandler}
                 />
               </div>
+            <Link to ='/questionnaire'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
           </form>
-          <Link to ='/questionnaire'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
       </div>
     )
   }

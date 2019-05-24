@@ -4,17 +4,16 @@ import Checkbox from './Checkbox';
 
 const CheckboxList = props => {
   return (
-    <div>
+    <div className = 'row'>
         {checkBoxes.map((el, i) => {
            return (
             <Checkbox 
-                className = 'form-check-input'
-                key = {i}
-                title = {el.title}
-                type = 'checkbox'
-                name = {el.name}
-                value = {el.key}
-                {...props}
+              key = {i}
+              title = {el.title}
+              type = 'checkbox'
+              name = {el.name}
+              value = {el.key}
+              {...props}
             />)
         })}
     </div>

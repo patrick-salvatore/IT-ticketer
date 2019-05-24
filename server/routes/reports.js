@@ -50,8 +50,8 @@ router.post('/', (req, res) => {
 
 // ROUTE THAT FETCHES REPORT BY ID
 router.get('/:id', (req,res) => {
-    let id = req.params
-    Report.findByPk(id)
+    let id = req.params.id
+    Report.findByPk(parseInt(id))
         .then(report => {
             res.status(200).json({report})
         })

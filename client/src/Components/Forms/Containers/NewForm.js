@@ -133,45 +133,49 @@ class NewForm extends Component {
               </div>
             </div>
             <div className='row'>
-              <TextArea
-                title = 'Incident description'
-                type = 'text'
-                name = 'incident_desc'
-                rows = '5'
-                cols = '60'
-                value = {this.state.formFields.incident_desc}
-                onChange = {this.changeHandler}
-              />
+              <div className = 'col'>
+                <TextArea
+                  title = 'Incident description'
+                  type = 'text'
+                  name = 'incident_desc'
+                  rows = '5'
+                  cols = '60'
+                  value = {this.state.formFields.incident_desc}
+                  onChange = {this.changeHandler}
+                />
+              </div>
             </div>
-              <div className='row'>
-                <div className ='col'>
+              <div className ='col'>
+                <div className='row-3'>
                   <label className = 'form-group-label font-weight-bold'>Incident type: </label>
                   <CheckboxList onClick = {this.onSelect}/>
                 </div>
               </div>
               <label className = 'form-group-label font-weight-bold'> Incident Severity </label>
-              <div className = 'row'> 
-                <Input
-                  title = 'Low'
-                  type = 'radio'
-                  name = 'incident_severity'
-                  value = 'low'
-                  onChange =  {this.changeHandler}
-                />
-                <Input
-                  title = 'Mid'
-                  type = 'radio'
-                  name = 'incident_severity'
-                  value = 'medium'
-                  onChange =  {this.changeHandler}
-                />
-                <Input
-                  title = 'High'
-                  type = 'radio'
-                  name = 'incident_severity'
-                  value = 'high'
-                  onChange =  {this.changeHandler}
-                />
+              <div className = 'col'>
+                <div className = 'row'> 
+                  <Input
+                    title = 'Low'
+                    type = 'radio'
+                    name = 'incident_severity'
+                    value = 'low'
+                    onChange =  {this.changeHandler}
+                  />
+                  <Input
+                    title = 'Mid'
+                    type = 'radio'
+                    name = 'incident_severity'
+                    value = 'medium'
+                    onChange =  {this.changeHandler}
+                  />
+                  <Input
+                    title = 'High'
+                    type = 'radio'
+                    name = 'incident_severity'
+                    value = 'high'
+                    onChange =  {this.changeHandler}
+                  />
+                </div>
               </div>
             <Link to ='/questionnaire'><button onClick = {this.saveHandler} className = 'btn btn-primary'> Next </button></Link>
           </form>

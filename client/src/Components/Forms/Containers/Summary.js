@@ -23,6 +23,7 @@ class Summary extends Component {
   render() {
     return (
       <div className = 'container'>
+        <div className = 'formContainer'>
         <h3>Checklist Summary</h3>
         <hr/>
         <h5 style = {{textDecoration: 'underline'}}>General</h5>
@@ -79,6 +80,7 @@ class Summary extends Component {
           </div>
           <button className = 'btn btn-success' type = 'submit'> Save </button>
         </form>
+        </div>
       </div>
     )
   }

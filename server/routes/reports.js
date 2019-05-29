@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const data = req.body.Report
     Report.create({
-        title: data.incident_title,
+        title: data.title,
         author: data.author,
         description: data.incident_desc,
         incident_type: data.incident_type.toString(),
@@ -40,18 +40,17 @@ router.post('/', (req, res) => {
         action: data.action
     })
     .then(report => {
-        res.status(201).json({"message": "new report created", "data": report})
+        res.status(201).json({"message": "new report created", "report": report})
     })
     .catch(err => {
-        console.log(err)
         return res.status(400).json({"message": "Error while creating post"})
     })
 });
 
 // ROUTE THAT FETCHES REPORT BY ID
 router.get('/:id', (req,res) => {
-    let id = req.params.id
-    Report.findByPk(parseInt(id))
+    const id = parseInt(req.params.id)
+    Report.findByPk(id)
         .then(report => {
             res.status(200).json({report})
         })
@@ -60,7 +59,7 @@ router.get('/:id', (req,res) => {
 
 // ROUTE THAT DELETES A REPORT BY ID
 router.delete('/:id', (req, res) => {
-    let id = req.params
+    const id = req.params.id
     Report.destroy({
         where: {id}
     })

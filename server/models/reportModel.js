@@ -41,51 +41,39 @@ const report = sequelize.define('report', {
     },
     question_1: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_2: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_2: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_3: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_4: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_5: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_6: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_7: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_8: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_9: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_10: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     question_11: {
         type: Sequelize.STRING,
-        allowNull: false
     },
     action: {
         type: Sequelize.STRING,

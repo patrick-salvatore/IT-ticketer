@@ -69,7 +69,7 @@ class Questionaire extends Component {
                   onChange = {this.changeHandler}
                 />
                 <Input 
-                  title = 'Is the information Client Based?'
+                  title = 'Is the information client based?'
                   type = 'text'
                   name = 'q4'
                   placeholder = 'Answer'
@@ -77,7 +77,7 @@ class Questionaire extends Component {
                   onChange = {this.changeHandler}
                 />
                 <Input 
-                  title = 'If the incident involves the loss of a laptop or portable device, did the device contain Client Data. Was the information, backed up onto Druva systems?'
+                  title = 'If the incident involves the loss of a laptop or portable device, did the device contain client Data. Was the information, backed up onto Druva systems?'
                   type = 'text'
                   name = 'q5'
                   placeholder = 'Answer'
@@ -85,7 +85,7 @@ class Questionaire extends Component {
                   onChange = {this.changeHandler}
                 />
                 <Input
-                  title = "Does it include records of operational, legal or evidential value to the HealthSTAR or its Clients?"
+                  title = "Does it include records of operational, legal or evidential value to the company or its clients?"
                   type = 'text'
                   name = 'q6'
                   placeholder = 'Answer'
@@ -118,7 +118,7 @@ class Questionaire extends Component {
                   onChange = {this.changeHandler}
                 />
                 <Input
-                  title = 'Will the loss or compromise of the information have adverse operational, financial legal, liability or reputational consequences for HealthSTAR or its Clients?'
+                  title = 'Will the loss or compromise of the information have adverse operational, financial legal, liability or reputational consequences for company or its clients?'
                   type = 'text'
                   name = 'q9'
                   placeholder = 'Answer'
@@ -126,7 +126,7 @@ class Questionaire extends Component {
                   onChange = {this.changeHandler}
                 /> 
                 <Input
-                  title = 'Is the information bound by any contractual security arrangements e.g. to Clients?'
+                  title = 'Is the information bound by any contractual security arrangements e.g. to clients?'
                   type = 'text'
                   name = 'q10'
                   placeholder = 'Answer'

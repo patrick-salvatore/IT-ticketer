@@ -10,19 +10,20 @@ import Content from "./Content"
 /* for now, this will be the mock up. However need to map with the appropiate data when the time comes*/
 
 const Reports = (props) => {
-  console.log(props.Reports)
   return (
     <div>
       <Table bordered hover striped variant='primary' style ={{marginTop: '1em'}}>
         <thead>
           <tr>
             <th>ID</th>
-            <th>Client</th>
+            <th>Title</th>
             <th>Date</th>
             <th>Description</th>
           </tr>
         </thead>
-        <Content/>
+        <tbody>
+          <Content Reports = {props.Reports}/>
+        </tbody>
       </Table> 
       <ButtonToolbar aria-label="Toolbar with button groups">
         <ButtonGroup className="mr-2" aria-label="First group">

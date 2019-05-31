@@ -78,7 +78,19 @@ const report = sequelize.define('report', {
     action: {
         type: Sequelize.STRING,
         allowNull: false
-    }
+    }, 
 });
+
+report.searchQuery = async function(p, v) {
+    const Op = Sequelize.Op
+    const data = await report.findAll({
+        where: {
+            [p] : {
+                [Op.like]: `%${v}%`
+            }
+        }
+    })
+    return data
+}
 
 module.exports = report

@@ -17,7 +17,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const data = req.body.Report
     Report.create({
-        title: data.title,
+        title: data.title.toLowerCase(),
         author: data.author,
         description: data.incident_desc,
         incident_type: data.incident_type.toString(),
@@ -46,20 +46,19 @@ router.post('/', (req, res) => {
     })
 });
 
-// Search route
+// ROUTE THAT FETCHES ROUTE FROM USER SEARCH
 router.get('/:paramater/:value', (req, res) => {
     const searchParam = req.params.paramater
     const searchValue = req.params.value 
 
-    Report.findAll({
-        where: {[searchParam]: searchValue}
-    })
+    Report.searchQuery(searchParam, searchValue)
     .then(reports => {
         if (!reports.length) {
             res.status(404).json({message: 'No reports found'})
         }
         res.status(200).send(reports)
     })
+    .catch(err => console.log(err))
 })
 
 // ROUTE THAT FETCHES REPORT BY ID

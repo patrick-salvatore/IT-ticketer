@@ -12,7 +12,6 @@ class DashBoard extends Component {
     }
   }
 
-
   handleSearch = (searchData) => {
     this.setState(({searchData}))
   }
@@ -22,7 +21,7 @@ class DashBoard extends Component {
       <div className='container'>
           <h2>Search View</h2> 
           <Search onSearch = {this.handleSearch}/>
-          <Reports/>
+          <Reports Reports = {this.state.searchData}/>
           <Link to="/newform"><button className = 'btn btn-primary' style ={{marginTop: '20px'}}>New Form</button></Link>
       </div>
     )

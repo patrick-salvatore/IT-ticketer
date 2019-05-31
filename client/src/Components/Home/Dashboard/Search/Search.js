@@ -11,9 +11,8 @@ export default class Search extends Component {
             }
         }
     }
-    
-    handleSubmit = (e) => {
-        e.preventDefault()
+
+    handleChange = (e) => {
         const searchValue = e.target.placeholder === "Search" ? e.target.value : this.state.search.value
         const paramater = e.target.placeholder === "Paramater" ? e.target.value : this.state.search.paramater
         this.setState({
@@ -21,20 +20,29 @@ export default class Search extends Component {
                 value: searchValue,
                 paramater: paramater
             }
-        }, _ => {this.props.onSearch(this.state.search)}) 
+        })
+        // , _ => {this.props.onSearch(this.state.search)}) 
     }
 
+    handleSearch = async (e) => {
+        e.preventDefault()
+        const res = await fetch(`http://localhost:4000/API/reports/${this.state.search.paramater}/${this.state.search.value}`, 
+            {method: 'get', headers: {"Content-Type": "application/json"}})
+        const json = await res.json()
+
+        this.props.onSearch(json)
+    }
 
     render() {
         return (
         <div>
-            <form onSubmit = {this.handleSubmit}>
+            <form onSubmit = {this.handleSearch}>
                 <button className = 'btn btn-primary'><FaSearch/></button>
-                <input className = 'form-control' style= {{display:'inline', width: '30%', marginLeft: '1em'}} type ='text' placeholder = 'Search' onChange = {this.handleSubmit}/>
+                <input className = 'form-control' style= {{display:'inline', width: '30%', marginLeft: '1em'}} type ='text' placeholder = 'Search' onChange = {this.handleChange}/>
                 <div className = 'search-param-container' style = {{display: 'inline-block'}}>
-                    <input list = 'search-params' className = 'form-control' type ='text' placeholder = 'Paramater' onChange = {this.handleSubmit}/>
+                    <input list = 'search-params' className = 'form-control' type ='text' placeholder = 'Paramater' onChange = {this.handleChange}/>
                     <datalist id = 'search-params'>
-                        <option value = 'ID'/>                    
+                        <option value = 'id'/>                    
                         <option value = 'Date'/>
                         <option value = 'Title'/>
                         <option value = 'Author'/>

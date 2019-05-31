@@ -2,15 +2,14 @@ const express = require('express'),
     router = express.Router(),
     Report = require('../models/reportModel');
 
-
 // ROUTE THAT FETCHES ALL REPORTS
 router.get('/', (req, res) => {
     Report.findAll()
         .then(reports => {
+            if(!reports.length) {
+                res.status(404).json({message: 'no messages found'})
+            }
             res.status(200).json({reports})
-        })
-        .catch(err => {
-            res.json({"message": "Reports not found"})
         })
 })
 
@@ -43,25 +42,41 @@ router.post('/', (req, res) => {
         res.status(201).json({"message": "new report created", "report": report})
     })
     .catch(err => {
-        return res.status(400).json({"message": "Error while creating post"})
+        res.status(400).json({"message": "Error while creating post"})
     })
 });
 
+// Search route
+router.get('/:paramater/:value', (req, res) => {
+    const searchParam = req.params.paramater
+    const searchValue = req.params.value 
+
+    Report.findAll({
+        where: {[searchParam]: searchValue}
+    })
+    .then(reports => {
+        if (!reports.length) {
+            res.status(404).json({message: 'No reports found'})
+        }
+        res.status(200).send(reports)
+    })
+})
+
 // ROUTE THAT FETCHES REPORT BY ID
-router.get('/:id', (req,res) => {
-    const id = parseInt(req.params.id)
-    Report.findByPk(id)
-        .then(report => {
+router.get('/:ID', (req,res) => {
+    const ID = parseInt(req.params.ID)
+    Report.findByPk(ID)
+        .then(report => { 
             res.status(200).json({report})
         })
         .catch(err => res.status(404).json({"message": "report does not exist"}))
 })
 
 // ROUTE THAT DELETES A REPORT BY ID
-router.delete('/:id', (req, res) => {
-    const id = req.params.id
+router.delete('/:ID', (req, res) => {
+    const ID = req.params.ID
     Report.destroy({
-        where: {id}
+        where: {ID}
     })
     .then(_ => {
         res.status(200).json({"message": "Report successfully deleted"})

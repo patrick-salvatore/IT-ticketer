@@ -20,9 +20,11 @@ class DashBoard extends Component {
     return (
       <div className='container'>
           <h2>Search View</h2> 
-          <Search onSearch = {this.handleSearch}/>
+          <div style = {{display: 'flex'}}>
+            <Search onSearch = {this.handleSearch}/>
+            <Link to="/newform" style = {{marginLeft: '1em'}}><button className = 'btn btn-primary'>New Form</button></Link>
+          </div>
           <Reports Reports = {this.state.searchData}/>
-          <Link to="/newform"><button className = 'btn btn-primary' style ={{marginTop: '20px'}}>New Form</button></Link>
       </div>
     )
   }

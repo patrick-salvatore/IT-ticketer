@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment} from 'react';
 import {FaSearch} from 'react-icons/fa';
 
 export default class Search extends Component {
@@ -21,7 +21,6 @@ export default class Search extends Component {
                 paramater: paramater
             }
         })
-        // , _ => {this.props.onSearch(this.state.search)}) 
     }
 
     handleSearch = async (e) => {
@@ -29,17 +28,16 @@ export default class Search extends Component {
         const res = await fetch(`http://localhost:4000/API/reports/${this.state.search.paramater}/${this.state.search.value}`, 
             {method: 'get', headers: {"Content-Type": "application/json"}})
         const json = await res.json()
-
         this.props.onSearch(json)
     }
 
     render() {
         return (
-        <div>
-            <form onSubmit = {this.handleSearch}>
+        <Fragment>
+            <form style = {{display: 'flex', width: '50%'}} onSubmit = {this.handleSearch}>
                 <button className = 'btn btn-primary'><FaSearch/></button>
-                <input className = 'form-control' style= {{display:'inline', width: '30%', marginLeft: '1em'}} type ='text' placeholder = 'Search' onChange = {this.handleChange}/>
-                <div className = 'search-param-container' style = {{display: 'inline-block'}}>
+                <input className = 'form-control' style = {{marginLeft: '1em'}} type ='text' placeholder = 'Search' onChange = {this.handleChange}/>
+                <div className = 'search-param-container' >
                     <input list = 'search-params' className = 'form-control' type ='text' placeholder = 'Paramater' onChange = {this.handleChange}/>
                     <datalist id = 'search-params'>
                         <option value = 'id'/>                    
@@ -50,7 +48,7 @@ export default class Search extends Component {
                     </datalist>
                 </div>
             </form>
-        </div>
+        </Fragment>
         )
     }
 }

@@ -15,6 +15,7 @@ const Reports = (props) => {
             <th>Title</th>
             <th>Date</th>
             <th>Description</th>
+            <th></th>
           </tr>
         </thead>
         <tbody>

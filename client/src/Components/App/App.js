@@ -1,8 +1,8 @@
 import React from 'react';
 import {Switch, Route} from 'react-router-dom'
 
-import Navbar from "../Home/Navbar/Navbar"
-import Home from '../Home/Home';
+import Navbar from "../Navbar/Navbar"
+import DashBoard from '../Dashboard/DashBoard';
 import SignIn from '../Auth/SignIn';
 import NewForm from '../Forms/Containers/NewForm'
 import Questionnaire from '../Forms/Containers/Questionnaire'
@@ -15,7 +15,7 @@ function App() {
     <div className="App">
       <Navbar/>
       <Switch>
-        <Route exact path='/' component = {Home}></Route>
+        <Route exact path='/' component = {DashBoard}></Route>
         <Route path='/signin' component = {SignIn}></Route>
         <Route path='/newform' component = {NewForm}></Route>
         <Route path='/questionnaire' component = {Questionnaire}></Route>

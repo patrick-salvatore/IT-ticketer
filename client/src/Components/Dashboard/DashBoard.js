@@ -8,12 +8,16 @@ class DashBoard extends Component {
   constructor() {
     super()
     this.state = {
-      searchData: {}
+      reportData: {}
     }
   }
 
-  handleSearch = (searchData) => {
-    this.setState(({searchData}))
+  handleSearch = (reportData) => {
+    this.setState(({reportData}))
+  }
+
+  componentDidMount() {
+    console.log('mounted on that pussy')
   }
 
   render() {
@@ -24,7 +28,7 @@ class DashBoard extends Component {
             <Search onSearch = {this.handleSearch}/>
             <Link to="/newform" style = {{marginLeft: '1em'}}><button className = 'btn btn-primary'>New Form</button></Link>
           </div>
-          <Reports Reports = {this.state.searchData}/>
+          <Reports Reports = {this.state.reportData}/>
       </div>
     )
   }

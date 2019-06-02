@@ -7,15 +7,15 @@ const Content = (props) => {
   const reports = props.Reports
   return (
     <Fragment>
-      {reports.length > 0 && ((reports.map((r, i) => (
-        <Fragment key = {i}>
+      {reports.length > 0 && ((reports.map((report, i) => (
+        <Fragment key = {report.ID}>
           <tr> 
-            <td>{r.ID}</td>
-            <td>{r.title}</td>
-            <td>{r.createdAt}</td>
-            <td>{r.description}</td>
+            <td>{report.ID}</td>
+            <td>{report.title}</td>
+            <td>{report.createdAt}</td>
+            <td>{report.description}</td>
           </tr>
-          <Link to = {{pathname: `/report/${r.ID}`, state: {report: reports[r.ID]}}}>
+          <Link to = {{pathname: `/report/${report.ID}`, state: {report: reports[i]}}}>
             view
           </Link>
         </Fragment>

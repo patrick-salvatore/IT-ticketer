@@ -8,7 +8,6 @@ class Summary extends Component {
     constructor() {
         super()
         this.state = {}
-        // this.url = 'http://localhost:4000/API/reports'
     }
 
     componentWillMount() {

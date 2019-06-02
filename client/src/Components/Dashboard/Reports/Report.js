@@ -7,7 +7,6 @@ import TextArea from '../../Forms/Items/TextArea'
 
 const Report = (props) =>  {
     const Report = props.location.state.report
-    console.log(Report)
         return (
             <div className = 'container'>
             <div className = 'formContainer'>

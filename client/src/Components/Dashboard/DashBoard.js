@@ -17,7 +17,7 @@ class DashBoard extends Component {
   }
 
   componentDidMount() {
-    console.log('mounted on that pussy')
+   
   }
 
   render() {

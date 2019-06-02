@@ -18,7 +18,7 @@ class NewForm extends Component {
       validated: false,
       formFields: {
         date: '',
-        incident_title: '', 
+        title: '', 
         author: '',
         owner_name: '',
         owner_email: '',
@@ -84,7 +84,7 @@ class NewForm extends Component {
                 <Input
                   title = 'Incident Title'
                   type = 'text'
-                  name = 'incident_title'
+                  name = 'title'
                   placeholder = 'Title'
                   value = {this.state.formFields.incident_title }
                   onChange = {this.changeHandler} 

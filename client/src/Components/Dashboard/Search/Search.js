@@ -27,8 +27,8 @@ export default class Search extends Component {
         e.preventDefault()
         const res = await fetch(`http://localhost:4000/API/reports/${this.state.search.paramater}/${this.state.search.value}`, 
             {method: 'get', headers: {"Content-Type": "application/json"}})
-        const json = await res.json()
-        this.props.onSearch(json)
+        const data = await res.json()
+        this.props.onSearch(data)
     }
 
     render() {

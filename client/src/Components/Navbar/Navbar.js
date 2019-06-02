@@ -9,7 +9,7 @@ function NavBar() {
   return (
     <div >
       <Navbar expand="lg" variant="dark" bg="dark" sticky="top">
-          <Navbar.Brand>HealthSTAR IT</Navbar.Brand>
+          <Link to = '/'><Navbar.Brand>HealthSTAR IT</Navbar.Brand></Link>
         <Navbar.Collapse className="justify-content-end">
           <Nav className="float-right">
             <Link className="link" to='/signin'>Sign In</Link>

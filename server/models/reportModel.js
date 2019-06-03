@@ -90,6 +90,7 @@ report.searchQuery = async function(p, v) {
             }
         }
     })
+    
     return data
 }
 

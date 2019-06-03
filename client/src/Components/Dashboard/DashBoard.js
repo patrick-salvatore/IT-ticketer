@@ -17,12 +17,11 @@ class DashBoard extends Component {
   }
 
   async componentWillMount() {
-      const res = await fetch('http://localhost:4000/API/reports', {method: 'get', hearders: {"Content-Type": "application/json"}})
-      const reportData = await res.json()
-      // console.log(reportData)
-      this.setState(({reportData}))
-  }
-
+    const res = await fetch('http://localhost:4000/API/reports', {})
+    const data = await res.json()
+    this.setState(({reportData: data.reports}))
+}  
+  
   render() {
     return (
       <div className='container'>

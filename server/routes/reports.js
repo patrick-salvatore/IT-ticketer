@@ -6,12 +6,18 @@ const express = require('express'),
 router.get('/', (req, res) => {
     Report.findAll()
         .then(reports => {
-            if(!reports.length) {
-                res.status(404).json({message: 'no messages found'})
+            if (!reports.length) {
+                res.json({message: 'No reports available'})
             }
-            res.status(200).json({reports})
+            else {
+                res.json({reports})
+            }
+        })
+        .catch(err => {
+            
         })
 })
+
 
 // ROUTE THAT CREATS A NEW REPORT
 router.post('/', (req, res) => {
@@ -46,29 +52,14 @@ router.post('/', (req, res) => {
     })
 });
 
-// ROUTE THAT FETCHES ROUTE FROM USER SEARCH
-router.get('/:paramater/:value', (req, res) => {
-    const searchParam = req.params.paramater
-    const searchValue = req.params.value 
-
-    Report.searchQuery(searchParam, searchValue)
-    .then(reports => {
-        if (!reports.length) {
-            res.status(404).json({message: 'No reports found'})
-        }
-        res.status(200).send(reports)
-    })
-    .catch(err => console.log(err))
-})
-
 // ROUTE THAT FETCHES REPORT BY ID
 router.get('/:ID', (req,res) => {
     const ID = parseInt(req.params.ID)
     Report.findByPk(ID)
-        .then(report => { 
-            res.status(200).json({report})
-        })
-        .catch(err => res.status(404).json({"message": "report does not exist"}))
+    .then(report => { 
+        res.status(200).json({report})
+    })
+    .catch(err => res.status(404).json({"message": "report does not exist"}))
 })
 
 // ROUTE THAT DELETES A REPORT BY ID
@@ -85,5 +76,20 @@ router.delete('/:ID', (req, res) => {
     })
 })
 
+// ROUTE THAT FETCHES ROUTE FROM USER SEARCH
+router.get('/:paramater/:value', (req, res) => {
+    const searchParam = req.params.paramater
+    const searchValue = req.params.value 
+
+    Report.searchQuery(searchParam, searchValue)
+    .then(reports => {
+        if (!reports.length) {
+            return res.json({message: 'No reports found'}).status(404)
+        } else {
+            return res.json({reports}).status(200)
+        }
+    })
+    .catch(err => console.log(err))
+})
 
 module.exports = router

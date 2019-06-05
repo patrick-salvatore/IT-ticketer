@@ -1,6 +1,5 @@
 import React from 'react'
 
-
 //  components
 import Input from '../../Forms/Items/Input'
 import TextArea from '../../Forms/Items/TextArea'
@@ -68,7 +67,7 @@ const Report = (props) =>  {
                 </div>
               </div>
           </div>
-          <Link to = {{pathname: `/summary`}}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
+          <Link to = {{pathname: `/edit`, state: {Report}}}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
         </form>
         </div>
       </div>

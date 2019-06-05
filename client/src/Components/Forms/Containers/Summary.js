@@ -3,7 +3,6 @@ import { connect } from 'react-redux'
 import Input from "../Items/Input"
 import TextArea from "../Items/TextArea"
 
-
 class Summary extends Component {
     constructor(props) {
         super(props)
@@ -11,7 +10,6 @@ class Summary extends Component {
     }
 
     componentWillMount() {
-
       this.setState(() => (this.props.Report), () => {console.log(this.state.Report)})
     }
   

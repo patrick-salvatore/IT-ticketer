@@ -1,5 +1,5 @@
 import React from 'react';
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Redirect} from 'react-router-dom'
 
 import Navbar from "../Navbar/Navbar";
 import DashBoard from '../Dashboard/DashBoard';
@@ -8,6 +8,7 @@ import Report from '../Dashboard/Reports/Report'
 import NewForm from '../Forms/Containers/NewForm'
 import Questionnaire from '../Forms/Containers/Questionnaire'
 import Summary from '../Forms/Containers/Summary'
+import Edit from '../Forms/Containers/Edit'
 
 import './App.css'
 
@@ -22,6 +23,7 @@ function App() {
         <Route exact path='/newform' component = {NewForm}></Route>
         <Route exact path='/questionnaire' component = {Questionnaire}></Route>
         <Route exact path='/summary' component = {Summary}></Route>
+        <Route exact path='/edit' component = {Edit}></Route>
       </Switch>
     </div>
   );

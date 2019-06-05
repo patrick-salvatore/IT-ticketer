@@ -1,8 +1,9 @@
-import { SAVE_FORM } from './types'
+import { SEND_FORM } from './types'
 
-export const saveFormToState = (form) => {
+
+export const sendFormToState = (form) => {
     return {
-        type: SAVE_FORM, 
+        type: SEND_FORM, 
         form
     }
 }

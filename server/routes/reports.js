@@ -7,17 +7,16 @@ router.get('/', (req, res) => {
     Report.findAll()
         .then(reports => {
             if (!reports.length) {
-                res.json({message: 'No reports available'})
+                res.status(404).send({message: 'No reports available'})
             }
             else {
                 res.json({reports})
             }
         })
         .catch(err => {
-            
+            console.log(err)
         })
 })
-
 
 // ROUTE THAT CREATS A NEW REPORT
 router.post('/', (req, res) => {
@@ -84,7 +83,7 @@ router.get('/:paramater/:value', (req, res) => {
     Report.searchQuery(searchParam, searchValue)
     .then(reports => {
         if (!reports.length) {
-            return res.json({message: 'No reports found'}).status(404)
+            return res.status(404).send({message: 'No reports found'})
         } else {
             return res.json({reports}).status(200)
         }

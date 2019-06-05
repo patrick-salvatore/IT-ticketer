@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 // Router & Redux
 import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {saveFormToState} from '../../../Actions/ReportActions'
+import {sendFormToState} from '../../../Actions/ReportActions'
 
 // components
 import Input from '../Items/Input'
@@ -187,7 +187,7 @@ class NewForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onSave: form => {
-      dispatch(saveFormToState(form))
+      dispatch(sendFormToState(form))
     }
   }
 }

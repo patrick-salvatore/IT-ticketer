@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import HIGH_RISK_CONTENT from '../Items/content'
-import {saveFormToState} from '../../../Actions/ReportActions'
+import {sendFormToState} from '../../../Actions/ReportActions'
 
 // react-router & redux 
 import { Link } from 'react-router-dom'
@@ -167,7 +167,7 @@ class Questionaire extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     onSave: form => {
-      dispatch(saveFormToState(form))
+      dispatch(sendFormToState(form))
     }
   }
 }

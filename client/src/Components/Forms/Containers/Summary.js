@@ -5,12 +5,13 @@ import TextArea from "../Items/TextArea"
 
 
 class Summary extends Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
         this.state = {}
     }
 
     componentWillMount() {
+
       this.setState(() => (this.props.Report), () => {console.log(this.state.Report)})
     }
   
@@ -84,7 +85,6 @@ class Summary extends Component {
     )
   }
 }
-
 
 const mapStateToProps = (state) => {
   return {

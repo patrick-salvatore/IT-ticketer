@@ -9,7 +9,7 @@ export default class Search extends Component {
                 value: '',
                 paramater: ''
             }, 
-            errorMessage: ''
+            errorMessage : false
         }
     }
 
@@ -26,17 +26,14 @@ export default class Search extends Component {
 
      handleSearch = async (e) => {
         e.preventDefault()
-        const res = await fetch(`http://localhost:4000/API/reports/${this.state.search.paramater}/${this.state.search.value}`, 
-            {method: 'get'})
-        const data = await res.json()
-        this.props.onSearch(data.reports)
+        const res = await fetch(`http://localhost:4000/API/reports/${this.state.search.paramater}/${this.state.search.value}`, {method: 'get'})
+        const data = await res.json() 
+        return this.props.onSearch(data.reports)
     }
 
     render() {
-        const {errorMessage} = this.state.errorMessage
         return (
         <Fragment>
-            {errorMessage && <h1>errorMessage</h1>}
             <form style = {{display: 'flex', width: '50%'}} onSubmit = {this.handleSearch}>
                 <button className = 'btn btn-primary'><FaSearch/></button>
                 <input className = 'form-control' style = {{marginLeft: '1em'}} type ='text' placeholder = 'Search' onChange = {this.handleChange}/>

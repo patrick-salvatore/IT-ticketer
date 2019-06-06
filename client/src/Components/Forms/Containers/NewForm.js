@@ -71,7 +71,7 @@ class NewForm extends Component {
     return (
       <div className = 'container'>
         <h1>Incidence Response Check List</h1>
-          <form className = 'formContainer'>
+          <form className = 'formContainer' style = {{padding: '10px'}}>
             <div className='col-12'>
               <div className='row'>
                 <Input 
@@ -86,7 +86,7 @@ class NewForm extends Component {
                   type = 'text'
                   name = 'title'
                   placeholder = 'Title'
-                  value = {this.state.formFields.incident_title }
+                  value = {this.state.formFields.title}
                   onChange = {this.changeHandler} 
                 />
                 <Input

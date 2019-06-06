@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 //  components
 import Input from '../../Forms/Items/Input'
@@ -7,12 +7,17 @@ import TextArea from '../../Forms/Items/TextArea'
 // router 
 import {Link} from 'react-router-dom'
 
-const Report = (props) =>  {
-    const Report = props.location.state.report
-    console.log(Report)
+class Report extends Component {
+
+  handleDelete = (ID) => {
+    fetch(`http://localhost:4000/API/reports/${ID}`, {method: 'DELETE'})
+  }
+
+  render() {
+    const Report = this.props.location.state.report
     return (
-        <div className = 'container'>
-        <div className = 'formContainer'>
+        <div className = 'container' >
+        <div className = 'formContainer' style = {{padding: '10px'}}>
         <h3>Checklist Summary</h3>
         <hr/>
         <h5 style = {{textDecoration: 'underline'}}>General</h5>
@@ -20,7 +25,7 @@ const Report = (props) =>  {
           <div style = {{marginTop: '10px', marginLeft: '15px'}}>
             <div className = 'row'>
               <div className = 'col-6'>
-                <Input title = "Date:" readOnly value = { Report.createdAt }></Input>
+                <Input title = "Date:" readOnly value = { Report.date }></Input>
                 <Input title = "Incident Title:" readOnly value = { Report.title }></Input>
                 <Input title = "Description:" readOnly value = { Report.description }></Input>
                 <Input title = "Type:" readOnly value = { Report.incident_type }></Input>
@@ -67,12 +72,13 @@ const Report = (props) =>  {
                 </div>
               </div>
           </div>
-          <Link to = {{pathname: `/edit`, state: {Report}}}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
+          <Link to = {{pathname: `/summary`, state: {Report}}}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
+          <Link to = {{pathname: `/`}} ><button onClick = {() => this.handleDelete(Report.ID)} className = 'btn btn-danger' style = {{marginLeft: '5px'}}> Delete </button></Link>
         </form>
         </div>
       </div>
     )
   }
-
+}
 
 export default Report

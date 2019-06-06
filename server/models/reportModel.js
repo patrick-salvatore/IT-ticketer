@@ -9,7 +9,12 @@ const report = sequelize.define('report', {
         primaryKey: true
     },
     title: {
-        type: Sequelize.STRING(50)
+        type: Sequelize.STRING(50),
+        allowNull: false
+    },
+    date: {
+        type: Sequelize.STRING(50),
+        allowNull: false
     },
     author: {
         type: Sequelize.STRING(50),
@@ -36,6 +41,10 @@ const report = sequelize.define('report', {
         allowNull: false
     },
     owner_add: {
+        type: Sequelize.STRING,
+        allowNull: false
+    },
+    owner_email: {
         type: Sequelize.STRING,
         allowNull: false
     },

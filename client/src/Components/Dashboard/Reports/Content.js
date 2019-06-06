@@ -12,7 +12,7 @@ const Content = (props) => {
           <tr className = 'tableRow'> 
             <td>{report.ID}</td>
             <td>{report.title}</td>
-            <td>{report.createdAt}</td>
+            <td>{report.date}</td>
             <td>{report.description}</td>
             <td>
               <Link className= 'viewBtn' to = {{pathname: `/report/${report.ID}`, state: {report: reports[i]}}}>

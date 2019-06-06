@@ -16,7 +16,7 @@ class Questionaire extends Component {
     super()
     this.state = {
       questions: {
-        q1: '', q2: '', q3: '', q4: '', q5: '', q6: '', q7: '', q8: '', q9: '', q10: '', q11: '', action: ''
+        question_1: '', question_2: '', question_3: '', question_4: '', question_5: '', question_6: '', question_7: '', question_8: '', question_9: '', question_10: '', question_11: '', action: ''
       }, 
     }
   }
@@ -25,7 +25,6 @@ class Questionaire extends Component {
     const value = e.target === 'radio' ? e.target.radio : e.target.value
     const name = e.target.name
     const questions = { ...this.state.questions, [name]: value }
-    // console.log(name, value, questions)
     this.setState(() => ( 
       { questions }
     ))
@@ -35,61 +34,60 @@ class Questionaire extends Component {
     this.props.onSave(this.state.questions)
   }
     
-  
   render() {
     return (
       <div className = 'container'> 
         <h1>Risk Factors Questionnaire</h1>
         <p>Please answer the following questions to provide more information about the issue</p>
           <div className = 'row'>
-            <div className = 'formContainer'>
+            <div className = 'formContainer' style = {{padding: '10px'}}>
               <form>
                 <Input 
                   title = 'Which IT systems, equipment or devices are involved in the security breach?'
                   type = 'text'
-                  name = 'q1'
+                  name = 'question_1'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q1}
+                  value = {this.state.questions.question_1}
                   onChange = {this.changeHandler}
                 />
                 <Input 
                   title = 'What information has been lost or compromised?'
                   type = 'text'
-                  name = 'q2'
+                  name = 'question_2'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q2}
+                  value = {this.state.questions.question_2}
                   onChange = {this.changeHandler}
                 />
                 <Input 
                   title = 'How much information has been lost?'
                   type = 'text'
-                  name = 'q3'
+                  name = 'question_3'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q3}
+                  value = {this.state.questions.question_3}
                   onChange = {this.changeHandler}
                 />
                 <Input 
                   title = 'Is the information client based?'
                   type = 'text'
-                  name = 'q4'
+                  name = 'question_4'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q4}
+                  value = {this.state.questions.question_4}
                   onChange = {this.changeHandler}
                 />
                 <Input 
                   title = 'If the incident involves the loss of a laptop or portable device, did the device contain client Data. Was the information, backed up onto Druva systems?'
                   type = 'text'
-                  name = 'q5'
+                  name = 'question_5'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q5}
+                  value = {this.state.questions.question_5}
                   onChange = {this.changeHandler}
                 />
                 <Input
                   title = "Does it include records of operational, legal or evidential value to the company or its clients?"
                   type = 'text'
-                  name = 'q6'
+                  name = 'question_6'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q6}
+                  value = {this.state.questions.question_6}
                   onChange = {this.changeHandler}
                 />
                 <label className = 'form-group-label font-weight-bold'>Is it business-critical? Do users rely on access to this information asset or can they use reliable electronic copies or alternative manual processes e.g. paper files if the information asset is unavailable?</label>
@@ -97,14 +95,14 @@ class Questionaire extends Component {
                   <Input
                   title = 'Yes'
                   type = 'radio'
-                  name = 'q7'
+                  name = 'question_7'
                   value = 'yes'
                   onChange =  {this.changeHandler}
                   />
                   <Input
                   title = 'No'
                   type = 'radio'
-                  name = 'q7'
+                  name = 'question_7'
                   value = 'no'
                   onChange =  {this.changeHandler}
                   />
@@ -112,33 +110,33 @@ class Questionaire extends Component {
                 <Input
                   title = 'How urgently would access need to be restored to an information asset to resume business or, to return to the required standard of service?'
                   type = 'text'
-                  name = 'q8'
+                  name = 'question_8'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q8}
+                  value = {this.state.questions.question_8}
                   onChange = {this.changeHandler}
                 />
                 <Input
                   title = 'Will the loss or compromise of the information have adverse operational, financial legal, liability or reputational consequences for company or its clients?'
                   type = 'text'
-                  name = 'q9'
+                  name = 'question_9'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q9}
+                  value = {this.state.questions.question_9}
                   onChange = {this.changeHandler}
                 /> 
                 <Input
                   title = 'Is the information bound by any contractual security arrangements e.g. to clients?'
                   type = 'text'
-                  name = 'q10'
+                  name = 'question_10'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q10}
+                  value = {this.state.questions.question_10}
                   onChange = {this.changeHandler}
                 />
                 <Input
                   title = 'Is any of the information confidential?'
                   type = 'text'
-                  name = 'q11'
+                  name = 'question_11'
                   placeholder = 'Answer'
-                  value = {this.state.questions.q11}
+                  value = {this.state.questions.question_11}
                   onChange = {this.changeHandler}
                 />  
 

@@ -1,4 +1,7 @@
 import React, {Component} from 'react'
+import { connect } from 'react-redux'
+import {sendFormToState} from '../../../Actions/ReportActions'
+
 
 //  components
 import Input from '../../Forms/Items/Input'
@@ -72,7 +75,7 @@ class Report extends Component {
                 </div>
               </div>
           </div>
-          <Link to = {{pathname: `/summary`, state: {Report}}}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
+          <Link to = {{pathname: `/edit`}} onClick = {() => this.props.sendForm(Report)}><button className = 'btn btn-warning' type = 'submit'> Edit </button></Link>
           <Link to = {{pathname: `/`}} ><button onClick = {() => this.handleDelete(Report.ID)} className = 'btn btn-danger' style = {{marginLeft: '5px'}}> Delete </button></Link>
         </form>
         </div>
@@ -81,4 +84,13 @@ class Report extends Component {
   }
 }
 
-export default Report
+const mapDispatchToProps = dispatch => {
+  return {
+    sendForm: form => {
+      dispatch(sendFormToState(form))
+    }
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(Report)

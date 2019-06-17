@@ -20,13 +20,13 @@
     0px 3px 5px -1px rgba(0, 0, 0, 0.2),
     0px 6px 10px 0px rgba(0, 0, 0, 0.2),
     0px 1px 10pc 0px rgba(0, 0, 0, 0.2);
-    transform: translateX(-500px);
+    transform: translateX(-550px);
     animation: slide-in linear 4.5s;
 }
 
 @keyframes slide-in {
     0% {
-        transform: translateX(-500px);
+        transform: translateX(-550px);
     }
 
     20% {
@@ -38,7 +38,7 @@
     }
     
     100% {
-        transform: translateX(-500px);
+        transform: translateX(-550px);
     }
 }
 

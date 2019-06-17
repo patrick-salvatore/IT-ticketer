@@ -21,30 +21,29 @@ router.get('/', (req, res) => {
 // ROUTE THAT CREATS A NEW REPORT
 router.post('/', (req, res) => {
     const data = req.body.Report
-    if (data.ID) {console.log(data.ID)}
-    else {Report.create({
-            date: data.date,
-            title: data.title.toLowerCase(),
-            author: data.author,
-            description: data.incident_desc,
-            incident_type: data.incident_type.toString(),
-            incident_severity: data.incident_severity,
-            owner_name: data.owner_name,
-            owner_tel: data.owner_tel,
-            owner_add: data.owner_add,
-            owner_email: data.owner_email,
-            question_1: data.question_1,
-            question_2: data.question_2,
-            question_3: data.question_3,
-            question_4: data.question_4,
-            question_5: data.question_5,
-            question_6: data.question_6,
-            question_7: data.question_7,
-            question_8: data.question_8,
-            question_9: data.question_9,
-            question_10: data.question_10,
-            question_11: data.question_11,
-            action: data.action
+    {Report.create({
+        date: data.date,
+        title: data.title.toLowerCase(),
+        author: data.author,
+        description: data.incident_desc,
+        incident_type: data.incident_type.toString(),
+        incident_severity: data.incident_severity,
+        owner_name: data.owner_name,
+        owner_tel: data.owner_tel,
+        owner_add: data.owner_add,
+        owner_email: data.owner_email,
+        question_1: data.question_1,
+        question_2: data.question_2,
+        question_3: data.question_3,
+        question_4: data.question_4,
+        question_5: data.question_5,
+        question_6: data.question_6,
+        question_7: data.question_7,
+        question_8: data.question_8,
+        question_9: data.question_9,
+        question_10: data.question_10,
+        question_11: data.question_11,
+        action: data.action
         })
         .then(report => {
             res.status(201).json({"message": "new report created", "report": report})
@@ -62,6 +61,11 @@ router.get('/:ID', (req,res) => {
         res.status(200).json({report})
     })
     .catch(err => res.status(404).json({"message": "report does not exist"}))
+})
+
+// ROUTE THAT WILL UDATE DATA BASED ON ID
+router.post('/report/:ID', (req, res) => {
+    Report.update({})
 })
 
 // ROUTE THAT DELETES A REPORT BY ID

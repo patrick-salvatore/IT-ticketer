@@ -65,7 +65,17 @@ router.get('/:ID', (req,res) => {
 
 // ROUTE THAT WILL UDATE DATA BASED ON ID
 router.post('/report/:ID', (req, res) => {
-    Report.update({})
+    const ID = parseInt(req.params.ID)
+    const updatedData = req.body
+    Report.findByPk(ID)
+        .then((prevData) => {
+            if (prevData) {
+                Report.updateAll(prevData, updatedData)
+            }
+            else{
+                res.sendStatus(404)
+            }
+        })
 })
 
 // ROUTE THAT DELETES A REPORT BY ID

@@ -87,20 +87,35 @@ const report = sequelize.define('report', {
     action: {
         type: Sequelize.STRING,
         allowNull: false
-    }, 
+    },
 });
 
-report.searchQuery = async function(p, v) {
+report.searchQuery = async function (p, v) {
     const Op = Sequelize.Op
     const data = await report.findAll({
         where: {
-            [p] : {
+            [p]: {
                 [Op.like]: `%${v}%`
             }
         }
     })
-
     return data
 }
+
+report.updateAll =  function (prevData, updatedData) {
+    const ID = prevData.ID
+    let hash = {}
+
+    for (let key in updatedData) {
+        if (prevData[key] !== updatedData[key] ) {
+            hash[key] = updatedData[key]
+        }
+    }
+
+    for (let key in hash) {
+        report.update({[key] : hash[key]}, {where:{ID}})
+    }
+}
+
 
 module.exports = report

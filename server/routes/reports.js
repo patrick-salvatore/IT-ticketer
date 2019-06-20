@@ -1,6 +1,8 @@
 const express = require('express'),
     router = express.Router(),
-    Report = require('../models/reportModel');
+    pdf = require('html-pdf'),
+    Report = require('../models/reportModel'), 
+    pdfTemplate = require('../documents/index');
 
 // ROUTE THAT FETCHES ALL REPORTS
 router.get('/', (req, res) => {
@@ -63,7 +65,7 @@ router.get('/:ID', (req,res) => {
     .catch(err => res.status(404).json({"message": "report does not exist"}))
 })
 
-// ROUTE THAT WILL UDATE DATA BASED ON ID
+// ROUTE THAT WILL UDATE / EDIT  DATA BASED ON ID
 router.post('/report/:ID', (req, res) => {
     const ID = parseInt(req.params.ID)
     const updatedData = req.body
@@ -106,6 +108,21 @@ router.get('/:paramater/:value', (req, res) => {
         }
     })
     .catch(err => console.log(err))
+})
+
+// ROUTE THAT WILL GENERATE PDF FILE FROM REPORT BY ID
+router.post('/report/pdf/create', (req, res) => {
+    pdf.create(pdfTemplate(req.body), {}).toFile('report.pdf', (err) => {
+        if (err) {
+            res.send(Promise.reject())
+        } 
+        
+        res.send(Promise.resolve())
+    })
+}) 
+
+router.get('/report/pdf/fetch', (req, res) => {
+    res.sendFile(`../report.pdf`)
 })
 
 module.exports = router

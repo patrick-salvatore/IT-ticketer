@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {sendFormToState} from '../../../Actions/ReportActions'
-
+import { saveAs } from 'file-saver'
+import axios from 'axios'
 
 //  components
 import Input from '../../Forms/Items/Input'
@@ -11,9 +12,26 @@ import TextArea from '../../Forms/Items/TextArea'
 import {Link} from 'react-router-dom'
 
 class Report extends Component {
+  constructor() {
+    super() 
+    this.state = {}
+  }
+
+  componentWillMount() {
+    this.setState((this.props.location.state.report))
+  }
 
   handleDelete = (ID) => {
     fetch(`http://localhost:4000/API/reports/${ID}`, {method: 'DELETE'})
+  }
+
+  createAndGeneratePDF = () => {
+    axios.post(`http://localhost:4000/API/reports//report/pdf/create`, JSON.stringify(this.state))
+      .then((res) => axios.get(`http://localhost:4000/API/reports//report/pdf/fetch`, {responseType: 'blob'}))
+      .then((res) => {
+        const pdfBlob = new Blob([res.data], {type: 'application/pdf'})
+        saveAs(pdfBlob, `reportPdf.pdf`)
+      }) 
   }
 
   render() {
@@ -23,7 +41,10 @@ class Report extends Component {
         <div className = 'formContainer' style = {{padding: '10px'}}>
         <h3>Checklist Summary</h3>
         <hr/>
-        <h5 style = {{textDecoration: 'underline'}}>General</h5>
+        <div style = {{display: 'flex', width: '100%', justifyContent: 'space-between'}}>
+          <h5 style = {{textDecoration: 'underline', display: 'inline'}}>General</h5>
+          <button onClick = {this.createAndGeneratePDF} className = 'btn btn-primary'>Generate PDF</button>
+        </div>
         <form>
           <div style = {{marginTop: '10px', marginLeft: '15px'}}>
             <div className = 'row'>

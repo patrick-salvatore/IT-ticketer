@@ -1,8 +1,6 @@
 import React from 'react'
 
 const Input = props => {
-  
-
   return (
     <div className = 'form-group'>
      <label forhtml = {props.name} className = 'form-label font-weight-bold'> {props.title} </label>

@@ -1,6 +1,7 @@
 const express = require('express'),
     router = express.Router(),
     pdf = require('html-pdf'),
+    path = require('path'),
     Report = require('../models/reportModel'), 
     pdfTemplate = require('../documents/index');
 
@@ -112,17 +113,17 @@ router.get('/:paramater/:value', (req, res) => {
 
 // ROUTE THAT WILL GENERATE PDF FILE FROM REPORT BY ID
 router.post('/report/pdf/create', (req, res) => {
-    pdf.create(pdfTemplate(req.body), {}).toFile('report.pdf', (err) => {
-        if (err) {
-            res.send(Promise.reject())
-        } 
-        
-        res.send(Promise.resolve())
+    pdf.create(pdfTemplate(req.body), {format: 'letter'}).toFile('./report.pdf', (err) => {
+       if (err) {
+           res.send(Promise.reject())
+       } else {
+           res.send(Promise.resolve())
+       }
     })
 }) 
 
 router.get('/report/pdf/fetch', (req, res) => {
-    res.sendFile(`../report.pdf`)
+    res.sendFile(path.join(__dirname, '..', 'report.pdf'))
 })
 
 module.exports = router

@@ -1,8 +1,6 @@
 import React, {Component} from 'react'
 import { connect } from 'react-redux'
 import {sendFormToState} from '../../../Actions/ReportActions'
-import { saveAs } from 'file-saver'
-import axios from 'axios'
 
 //  components
 import Input from '../../Forms/Items/Input'
@@ -25,14 +23,7 @@ class Report extends Component {
     fetch(`http://localhost:4000/API/reports/${ID}`, {method: 'DELETE'})
   }
 
-  createAndGeneratePDF = () => {
-    axios.post(`http://localhost:4000/API/reports//report/pdf/create`, JSON.stringify(this.state))
-      .then((res) => axios.get(`http://localhost:4000/API/reports//report/pdf/fetch`, {responseType: 'blob'}))
-      .then((res) => {
-        const pdfBlob = new Blob([res.data], {type: 'application/pdf'})
-        saveAs(pdfBlob, `reportPdf.pdf`)
-      }) 
-  }
+  createAndGeneratePDF = () => {}
 
   render() {
     const Report = this.props.location.state.report
